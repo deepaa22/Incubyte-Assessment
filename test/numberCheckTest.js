@@ -18,14 +18,17 @@ describe("Addition of Valid Numbers Check", function () {
   });
 
   it("should return sum of positive numbers if string contains multiple positive number", async function () {
-    const response = await request.post("/getNumbers").send({ data: "442" });
+    const response = await request
+      .post("/getNumbers")
+      .send({ data: "//;\n1;2" });
     expect(response.status).to.equal(200);
-    expect(response.body.output).to.equal(10);
+    expect(response.body.output).to.equal(3);
   });
 
   it("should return all negative numbers if string contains multiple negative numbers", async function () {
+    let result = ["-1", "-2"];
     const response = await request.post("/getNumbers").send({ data: "-1-2" });
     expect(response.status).to.equal(200);
-    expect(response.body.output).to.equal(["-1", "-2"]);
+    expect(response.body.output).deep.to.equal(result);
   });
 });

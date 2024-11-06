@@ -32,7 +32,9 @@ const add = function (str) {
 
   let sum = 0;
   for (let i = 0; i < digits.length; i++) {
-    sum += parseFloat(digits[i]);
+    if (!isNaN(digits[i])) {
+      sum += parseFloat(digits[i]);
+    }
   }
 
   return {
